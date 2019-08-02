@@ -17,6 +17,7 @@ import com.ht.testlist.R;
 import com.ht.testlist.fragment.PagerFragment;
 import com.ht.testlist.holder.PageViewHolder;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 /**
@@ -30,7 +31,6 @@ public class MainAdapter extends DelegateAdapter.Adapter {
     private Context context;
     private List<String> titles;
     private int height;
-    private PageViewHolder pageViewHolder;
     private PagerAdapter adapter;
     //记录上次展示的tab位置
     private int lastItem;
@@ -63,9 +63,9 @@ public class MainAdapter extends DelegateAdapter.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (position < TOP_COUNT) {
             TextView tv = holder.itemView.findViewById(R.id.tv);
-            tv.setText("test" + position);
+            tv.setText(MessageFormat.format("test{0}", position));
         } else {
-            pageViewHolder = (PageViewHolder) holder;
+            PageViewHolder pageViewHolder = (PageViewHolder) holder;
 
             if (pageViewHolder.getPagerChangeListener() == null){
                 pageViewHolder.setPagerChangeListener(pagerChangeListener);
@@ -83,9 +83,7 @@ public class MainAdapter extends DelegateAdapter.Adapter {
             //RecyclerView嵌套ViewPager会出现高度为0的bug,这里给ViewPager设置的高度为屏幕高度-状态栏高度
             ViewGroup.LayoutParams layoutParams = pageViewHolder.mViewPager.getLayoutParams();
             layoutParams.height = height;
-//            pageViewHolder.mViewPager.setLayoutParams(layoutParams);
-
-
+            pageViewHolder.mViewPager.setLayoutParams(layoutParams);
         }
 
     }

@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
     private List<String> data = new ArrayList<>();
     private List<PagerFragment> fragments = new ArrayList<>();
     public boolean innerCanScroll = true;
-    private VirtualLayoutManager virtualLayoutManager;
-    private MainAdapter mainAdapter;
     private PagerFragment currentFragment;
 
     private float downX;    //按下时 的X坐标
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
         recyclerView = (OutRecyclerView) findViewById(R.id.rv);
         rootView = findViewById(R.id.rl_root);
 
-        virtualLayoutManager = new VirtualLayoutManager(this);
+        VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(this);
         recyclerView.setLayoutManager(virtualLayoutManager);
         delegateAdapter = new DelegateAdapter(virtualLayoutManager);
         recyclerView.setAdapter(delegateAdapter);
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
         int i = (int) (54 * scale + 0.5f);
         yCriticalPoint = statusBarHeight + i;
         currentFragment = fragments.get(0);
-        mainAdapter = new MainAdapter(this, getSupportFragmentManager(), data, fragments, dm.heightPixels - statusBarHeight - i);
+        MainAdapter mainAdapter = new MainAdapter(this, getSupportFragmentManager(), data, fragments, dm.heightPixels - statusBarHeight - i);
         delegateAdapter.addAdapter(mainAdapter);
         mainAdapter.setPagerChangeListener(this);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
