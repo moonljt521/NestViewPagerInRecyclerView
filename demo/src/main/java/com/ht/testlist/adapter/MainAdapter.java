@@ -2,14 +2,12 @@ package com.ht.testlist.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -43,7 +41,6 @@ public class MainAdapter extends DelegateAdapter.Adapter {
     private PagerChangeListener pagerChangeListener;
 
     public MainAdapter(Context context, FragmentManager fragmentManager, List<String> titles, List<PagerFragment> fragments, int height) {
-        this.fragmentManager = fragmentManager;
         this.height = height;
         this.fragmentManager = fragmentManager;
         this.titles = titles;
@@ -60,7 +57,6 @@ public class MainAdapter extends DelegateAdapter.Adapter {
         } else {
             return new PageViewHolder(View.inflate(parent.getContext(), R.layout.rv_item_pager, null));
         }
-
     }
 
     @Override
@@ -70,6 +66,11 @@ public class MainAdapter extends DelegateAdapter.Adapter {
             tv.setText("test" + position);
         } else {
             pageViewHolder = (PageViewHolder) holder;
+
+            if (pageViewHolder.getPagerChangeListener() == null){
+                pageViewHolder.setPagerChangeListener(pagerChangeListener);
+            }
+
             if (adapter == null) {
                 adapter = new MainPagerAdapter(fragmentManager, titles, fragments);
             }
@@ -83,24 +84,8 @@ public class MainAdapter extends DelegateAdapter.Adapter {
             ViewGroup.LayoutParams layoutParams = pageViewHolder.mViewPager.getLayoutParams();
             layoutParams.height = height;
 //            pageViewHolder.mViewPager.setLayoutParams(layoutParams);
-            pageViewHolder.mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                }
 
-                @Override
-                public void onPageSelected(int position) {
-                    if (pagerChangeListener != null) {
-                        pagerChangeListener.pagerChange(position);
-                    }
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-
-                }
-            });
         }
 
     }
@@ -139,5 +124,4 @@ public class MainAdapter extends DelegateAdapter.Adapter {
     public void setPagerChangeListener(PagerChangeListener pagerChangeListener) {
         this.pagerChangeListener = pagerChangeListener;
     }
-
 }

@@ -18,10 +18,11 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     private List<String> data;
     private List<PagerFragment> fragments;
-    public MainPagerAdapter(FragmentManager fm, List<String> data, List<PagerFragment> fragments) {
+
+    MainPagerAdapter(FragmentManager fm, List<String> data, List<PagerFragment> fragments) {
         super(fm);
         this.data = data;
-        this.fragments=fragments;
+        this.fragments = fragments;
     }
 
     @Override

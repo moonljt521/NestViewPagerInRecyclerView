@@ -25,7 +25,6 @@ import com.ht.testlist.weight.InnerRecyclerView1;
 public class PagerFragment extends Fragment implements InnerRecyclerView1.NeedIntercepectListener {
 
     private InnerRecyclerView1 mRv;
-    private GridLayoutManager gridLayoutManager;
     private float downX;    //按下时 的X坐标
     private float downY;    //按下时 的Y坐标
     private String title;
@@ -74,7 +73,7 @@ public class PagerFragment extends Fragment implements InnerRecyclerView1.NeedIn
 
 
     private void initView() {
-        gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         mRv.setLayoutManager(new GridLayoutManager(getContext(), 2));
         PagerListAdapter adapter = new PagerListAdapter(title);
         mRv.setAdapter(adapter);

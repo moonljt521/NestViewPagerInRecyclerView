@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
 
     private float downX;    //按下时 的X坐标
     private float downY;    //按下时 的Y坐标
-    public OutRecyclerView rv;
+    public OutRecyclerView recyclerView;
     private DelegateAdapter delegateAdapter;
     public boolean isStick = false;
     private RelativeLayout rootView;
@@ -48,16 +48,14 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
         data.add("tab2");
         data.add("tab3");
         data.add("tab4");
-        data.add("tab5");
-//        data.add("tab6");
-//        data.add("tab7");
-        rv = (OutRecyclerView) findViewById(R.id.rv);
+        recyclerView = (OutRecyclerView) findViewById(R.id.rv);
         rootView = findViewById(R.id.rl_root);
+
         virtualLayoutManager = new VirtualLayoutManager(this);
-        rv.setLayoutManager(virtualLayoutManager);
+        recyclerView.setLayoutManager(virtualLayoutManager);
         delegateAdapter = new DelegateAdapter(virtualLayoutManager);
-        rv.setAdapter(delegateAdapter);
-        rv.setNestedScrollingEnabled(true);
+        recyclerView.setAdapter(delegateAdapter);
+        recyclerView.setNestedScrollingEnabled(true);
         //状态栏高度
         int statusBarHeight = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen",
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
         mainAdapter = new MainAdapter(this, getSupportFragmentManager(), data, fragments, dm.heightPixels - statusBarHeight - i);
         delegateAdapter.addAdapter(mainAdapter);
         mainAdapter.setPagerChangeListener(this);
-        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -86,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
     }
 
     public void adjustIntercept(boolean b) {
-        rv.setNeedIntercept(b);
+        recyclerView.setNeedIntercept(b);
     }
 
     @Override
