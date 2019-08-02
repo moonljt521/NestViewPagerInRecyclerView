@@ -74,7 +74,7 @@ public class PagerFragment extends Fragment implements InnerRecyclerView1.NeedIn
 
     private void initView() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        mRv.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        mRv.setLayoutManager(gridLayoutManager);
         PagerListAdapter adapter = new PagerListAdapter(title);
         mRv.setAdapter(adapter);
     }

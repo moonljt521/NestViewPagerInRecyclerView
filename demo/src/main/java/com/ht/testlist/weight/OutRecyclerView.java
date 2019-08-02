@@ -4,10 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
-
-import com.ht.testlist.activity.MainActivity;
 
 /**
  * Created by Administrator on 2018/9/3.
@@ -15,6 +12,7 @@ import com.ht.testlist.activity.MainActivity;
  */
 
 public class OutRecyclerView extends RecyclerView {
+
     private boolean isNeedIntercept = false;
     private float downX;    //按下时 的X坐标
     private float downY;    //按下时 的Y坐标
@@ -32,7 +30,6 @@ public class OutRecyclerView extends RecyclerView {
     public OutRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
-
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
@@ -82,6 +79,4 @@ public class OutRecyclerView extends RecyclerView {
             return dy > 0 ? 'b' : 't';//下//上
         }
     }
-
-
 }

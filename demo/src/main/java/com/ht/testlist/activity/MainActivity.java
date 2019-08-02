@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+        adjustIntercept(true);
     }
 
     public void adjustIntercept(boolean b) {
