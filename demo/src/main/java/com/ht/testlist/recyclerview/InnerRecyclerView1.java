@@ -6,9 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.ViewParent;
-
-import com.ht.testlist.utils.Util;
 
 /**
  * Created by Administrator on 2018/9/5.
@@ -36,10 +33,6 @@ public class InnerRecyclerView1 extends RecyclerView {
     public InnerRecyclerView1(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
-
-    private int yyy = -1;
-    private int xxx = -1;
-    private boolean isMove = false;
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
@@ -124,15 +117,6 @@ public class InnerRecyclerView1 extends RecyclerView {
             return dy > 0 ? 'b' : 't';//下//上
         }
     }
-
-    /**
-     * 处理 onTouch ，返回false 交给 click 处理
-     */
-    private boolean getClickable(float dx, float dy){
-
-        return false;
-    }
-
 
     public void setMaxY(int height) {
         this.maxY = height;

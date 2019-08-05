@@ -30,7 +30,6 @@ public class PagerListAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view = View.inflate(parent.getContext(), R.layout.rv_item_normal, null);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_normal,parent,false);
         return new ViewHolder(view);
     }
@@ -39,13 +38,6 @@ public class PagerListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         final TextView tv = holder.itemView.findViewById(R.id.tv);
         tv.setText(position + title);
-//        tv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(tv.getContext(),position + title , Toast.LENGTH_LONG) .show();
-//            }
-//        });
-
     }
 
     @Override
@@ -63,16 +55,15 @@ public class PagerListAdapter extends RecyclerView.Adapter {
             TextView textView = view.findViewById(R.id.tv);
             textView.setBackgroundColor(Color.RED);
 
-            textView.setOnTouchListener(new View.OnTouchListener() {
+            view.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     int action = event.getAction();
-                    int screenWidth = view.getContext().getResources().getDisplayMetrics().widthPixels;
                     switch (action) {
                         case MotionEvent.ACTION_DOWN:
                             lastX = (int) event.getRawX();
                             lastY = (int) event.getRawY();
-                            x1 =  event.getRawX();//得到相对应屏幕左上角的坐标
+                            x1 =  event.getRawX();
                             y1 =  event.getRawY();
                             break;
                         case MotionEvent.ACTION_MOVE:
@@ -95,7 +86,6 @@ public class PagerListAdapter extends RecyclerView.Adapter {
                     return true;
                 }
             });
-
         }
     }
 }
