@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
@@ -60,10 +61,16 @@ public class MainAdapter extends DelegateAdapter.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         if (position < TOP_COUNT) {
             TextView tv = holder.itemView.findViewById(R.id.tv);
             tv.setText(MessageFormat.format("test{0}", position));
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(holder.itemView.getContext(),MessageFormat.format("test{0}", position),Toast.LENGTH_LONG).show();
+                }
+            });
         } else {
             PageViewHolder pageViewHolder = (PageViewHolder) holder;
 

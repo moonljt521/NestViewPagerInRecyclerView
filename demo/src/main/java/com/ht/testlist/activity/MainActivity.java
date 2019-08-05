@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
 
     private float downX;    //按下时 的X坐标
     private float downY;    //按下时 的Y坐标
-    public OutRecyclerView recyclerView;
+//    public OutRecyclerView recyclerView;
+    public RecyclerView recyclerView;
     private DelegateAdapter delegateAdapter;
     public boolean isStick = false;
     private RelativeLayout rootView;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
         data.add("tab2");
         data.add("tab3");
         data.add("tab4");
-        recyclerView = (OutRecyclerView) findViewById(R.id.rv);
+        recyclerView =  findViewById(R.id.rv);
         rootView = findViewById(R.id.rl_root);
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(this);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
     }
 
     public void adjustIntercept(boolean b) {
-        recyclerView.setNeedIntercept(b);
+//        recyclerView.setNeedIntercept(b);
     }
 
     @Override
