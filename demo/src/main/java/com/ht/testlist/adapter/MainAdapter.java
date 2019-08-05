@@ -21,11 +21,6 @@ import com.ht.testlist.holder.PageViewHolder;
 import java.text.MessageFormat;
 import java.util.List;
 
-/**
- * Created by song on 2018/8/22 0022
- * My email : logisong@163.com
- * The role of this :
- */
 public class MainAdapter extends DelegateAdapter.Adapter {
 
     private FragmentManager fragmentManager;

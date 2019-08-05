@@ -9,18 +9,13 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
+import com.ht.testlist.R;
 import com.ht.testlist.adapter.MainAdapter;
 import com.ht.testlist.fragment.PagerFragment;
-import com.ht.testlist.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by song on 2018/8/22 0022
- * My email : logisong@163.com
- * The role of this :
- */
 public class MainActivity extends AppCompatActivity implements MainAdapter.PagerChangeListener {
 
     private List<String> data = new ArrayList<>();

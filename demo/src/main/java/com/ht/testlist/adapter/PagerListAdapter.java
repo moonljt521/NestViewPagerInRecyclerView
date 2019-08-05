@@ -14,11 +14,7 @@ import android.widget.Toast;
 
 import com.ht.testlist.R;
 
-/**
- * Created by song on 2018/8/22 0022
- * My email : logisong@163.com
- * The role of this :
- */
+
 public class PagerListAdapter extends RecyclerView.Adapter {
     private String title;
 

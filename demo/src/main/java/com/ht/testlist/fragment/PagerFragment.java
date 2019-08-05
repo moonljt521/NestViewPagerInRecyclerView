@@ -15,16 +15,12 @@ import android.view.ViewGroup;
 import com.ht.testlist.R;
 import com.ht.testlist.activity.MainActivity;
 import com.ht.testlist.adapter.PagerListAdapter;
-import com.ht.testlist.recyclerview.InnerRecyclerView1;
+import com.ht.testlist.recyclerview.InnerNestedRecyclerView;
 
-/**
- * Created by song on 2018/8/22 0022
- * My email : logisong@163.com
- * The role of this :
- */
-public class PagerFragment extends Fragment implements InnerRecyclerView1.NeedIntercepectListener {
 
-    private InnerRecyclerView1 mRv;
+public class PagerFragment extends Fragment implements InnerNestedRecyclerView.NeedIntercepectListener {
+
+    private InnerNestedRecyclerView mRv;
     private float downX;    //按下时 的X坐标
     private float downY;    //按下时 的Y坐标
     private String title;
@@ -49,7 +45,7 @@ public class PagerFragment extends Fragment implements InnerRecyclerView1.NeedIn
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = View.inflate(getContext(), R.layout.fragment_pager, null);
-        mRv = (InnerRecyclerView1) view.findViewById(R.id.inner_rv);
+        mRv = (InnerNestedRecyclerView) view.findViewById(R.id.inner_rv);
         mRv.setNestedScrollingEnabled(true);
         if (getArguments() != null) {
             title = getArguments().getString("title");

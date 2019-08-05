@@ -9,11 +9,7 @@ import com.ht.testlist.fragment.PagerFragment;
 
 import java.util.List;
 
-/**
- * Created by song on 2018/8/22 0022
- * My email : logisong@163.com
- * The role of this :
- */
+
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
     private List<String> data;

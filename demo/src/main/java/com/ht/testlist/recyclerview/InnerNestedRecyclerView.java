@@ -7,12 +7,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
-/**
- * Created by Administrator on 2018/9/5.
- * Description : InnerRecyclerView
- */
-
-public class InnerRecyclerView1 extends RecyclerView {
+public class InnerNestedRecyclerView extends RecyclerView {
 
     private boolean isNeedConsume;
     private float downX;    //按下时 的X坐标
@@ -22,15 +17,15 @@ public class InnerRecyclerView1 extends RecyclerView {
 
     private NeedIntercepectListener needIntercepectListener;
 
-    public InnerRecyclerView1(Context context) {
+    public InnerNestedRecyclerView(Context context) {
         super(context);
     }
 
-    public InnerRecyclerView1(Context context, @Nullable AttributeSet attrs) {
+    public InnerNestedRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public InnerRecyclerView1(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public InnerNestedRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -58,7 +53,6 @@ public class InnerRecyclerView1 extends RecyclerView {
 
                 if (Math.abs(dy) < 15) return false;
 
-                Log.d("ACTION_MOVE", "ACTION_MOVE");
                 //通过距离差判断方向
                 int orientation = getOrientation(dx, dy);
                 int[] location = {0, 0};
@@ -85,7 +79,6 @@ public class InnerRecyclerView1 extends RecyclerView {
                             getParent().requestDisallowInterceptTouchEvent(true);
                             if (needIntercepectListener != null) {
                                 needIntercepectListener.needIntercepect(true);
-                                Log.d("不要拦截", "不要拦截");
                             }
                         } else {
                             getParent().requestDisallowInterceptTouchEvent(false);

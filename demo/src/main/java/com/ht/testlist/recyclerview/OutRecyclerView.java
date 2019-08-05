@@ -6,10 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-/**
- * Created by Administrator on 2018/9/3.
- * Description : OutRecyclerView
- */
 
 public class OutRecyclerView extends RecyclerView {
 

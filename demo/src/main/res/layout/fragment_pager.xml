@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants">
 
-    <com.ht.testlist.recyclerview.InnerRecyclerView1
+    <com.ht.testlist.recyclerview.InnerNestedRecyclerView
         android:id="@+id/inner_rv"
         android:background="#FFF942e2"
         android:layout_width="match_parent"
