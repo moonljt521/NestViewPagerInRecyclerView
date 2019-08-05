@@ -6,15 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ht.testlist.adapter.PagerListAdapter;
 import com.ht.testlist.R;
 import com.ht.testlist.activity.MainActivity;
+import com.ht.testlist.adapter.PagerListAdapter;
 import com.ht.testlist.weight.InnerRecyclerView1;
 
 /**
@@ -71,24 +71,11 @@ public class PagerFragment extends Fragment implements InnerRecyclerView1.NeedIn
         return view;
     }
 
-
     private void initView() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        mRv.setLayoutManager(gridLayoutManager);
+        mRv.setLayoutManager(new LinearLayoutManager(getContext()));
         PagerListAdapter adapter = new PagerListAdapter(title);
         mRv.setAdapter(adapter);
     }
-
-    private int getOrientation(float dx, float dy) {
-        if (Math.abs(dx) > Math.abs(dy)) {
-            //X轴移动
-            return dx > 0 ? 'r' : 'l';
-        } else {
-            //Y轴移动
-            return dy > 0 ? 'b' : 't';
-        }
-    }
-
 
     @Override
     public void needIntercepect(boolean needIntercepect) {
