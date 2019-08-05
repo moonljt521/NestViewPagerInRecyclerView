@@ -7,8 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -63,6 +65,42 @@ public class PagerFragment extends Fragment implements InnerNestedRecyclerView.N
         height = statusBarHeight + i;
         mRv.setMaxY(height);
         mRv.setNeedIntercepectListener(this);
+
+//        // TODO: 2019/8/5
+//        mRv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//
+//            float y1,y2,x2,x1;
+//
+//            @Override
+//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//                if (e.getAction() == MotionEvent.ACTION_DOWN) {
+//                    x1 = e.getX();
+//                    y1 = e.getY();
+//                }
+//                if (e.getAction() == MotionEvent.ACTION_UP) {
+//                    x2 = e.getX();
+//                    y2 = e.getY();
+//                    if (Math.abs(x1 - x2) < 6) {
+//                        return false;// 距离较小，当作click事件来处理
+//                    }
+//                    if(Math.abs(x1 - x2) >60){  // 真正的onTouch事件
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//
+//            }
+//        });
+
         initView();
         return view;
     }

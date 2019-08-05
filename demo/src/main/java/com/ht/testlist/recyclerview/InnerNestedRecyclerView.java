@@ -51,8 +51,6 @@ public class InnerNestedRecyclerView extends RecyclerView {
                 float dx = x - downX;
                 float dy = y - downY;
 
-                if (Math.abs(dy) < 15) return false;
-
                 //通过距离差判断方向
                 int orientation = getOrientation(dx, dy);
                 int[] location = {0, 0};
