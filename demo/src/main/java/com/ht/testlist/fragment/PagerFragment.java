@@ -49,7 +49,7 @@ public class PagerFragment extends Fragment implements InnerRecyclerView1.NeedIn
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = View.inflate(getContext(), R.layout.fragment_pager, null);
-        mRv = (InnerRecyclerView1) view.findViewById(R.id.rv);
+        mRv = (InnerRecyclerView1) view.findViewById(R.id.inner_rv);
         mRv.setNestedScrollingEnabled(true);
         if (getArguments() != null) {
             title = getArguments().getString("title");

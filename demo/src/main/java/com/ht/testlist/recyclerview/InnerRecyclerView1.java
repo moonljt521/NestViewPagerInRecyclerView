@@ -6,6 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.ViewParent;
+
+import com.ht.testlist.utils.Util;
 
 /**
  * Created by Administrator on 2018/9/5.
@@ -34,6 +37,15 @@ public class InnerRecyclerView1 extends RecyclerView {
         super(context, attrs, defStyle);
     }
 
+    private int yyy = -1;
+    private int xxx = -1;
+    private boolean isMove = false;
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent e) {
+        onTouchEvent(e);
+        return false;
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
@@ -50,6 +62,9 @@ public class InnerRecyclerView1 extends RecyclerView {
                 //获取到距离差
                 float dx = x - downX;
                 float dy = y - downY;
+
+                if (Math.abs(dy) < 15) return false;
+
                 Log.d("ACTION_MOVE", "ACTION_MOVE");
                 //通过距离差判断方向
                 int orientation = getOrientation(dx, dy);
@@ -100,7 +115,6 @@ public class InnerRecyclerView1 extends RecyclerView {
         return super.onTouchEvent(e);
     }
 
-
     private int getOrientation(float dx, float dy) {
         if (Math.abs(dx) > Math.abs(dy)) {
             //X轴移动
@@ -110,6 +124,15 @@ public class InnerRecyclerView1 extends RecyclerView {
             return dy > 0 ? 'b' : 't';//下//上
         }
     }
+
+    /**
+     * 处理 onTouch ，返回false 交给 click 处理
+     */
+    private boolean getClickable(float dx, float dy){
+
+        return false;
+    }
+
 
     public void setMaxY(int height) {
         this.maxY = height;
