@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.ht.testlist.R;
 import com.ht.testlist.activity.MainActivity;
 import com.ht.testlist.adapter.PagerListAdapter;
-import com.ht.testlist.weight.InnerRecyclerView1;
+import com.ht.testlist.recyclerview.InnerRecyclerView1;
 
 /**
  * Created by song on 2018/8/22 0022

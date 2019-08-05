@@ -12,7 +12,6 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.ht.testlist.adapter.MainAdapter;
 import com.ht.testlist.fragment.PagerFragment;
 import com.ht.testlist.R;
-import com.ht.testlist.weight.OutRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +25,11 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
 
     private List<String> data = new ArrayList<>();
     private List<PagerFragment> fragments = new ArrayList<>();
-    public boolean innerCanScroll = true;
     private PagerFragment currentFragment;
 
-    private float downX;    //按下时 的X坐标
-    private float downY;    //按下时 的Y坐标
-//    public OutRecyclerView recyclerView;
     public RecyclerView recyclerView;
     private DelegateAdapter delegateAdapter;
     public boolean isStick = false;
-    private RelativeLayout rootView;
-    private int yCriticalPoint;
-    public static int rvYPosition = -10000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
         data.add("tab3");
         data.add("tab4");
         recyclerView =  findViewById(R.id.rv);
-        rootView = findViewById(R.id.rl_root);
+        RelativeLayout rootView = findViewById(R.id.rl_root);
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(this);
         recyclerView.setLayoutManager(virtualLayoutManager);
@@ -69,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
         }
         final float scale = dm.density;
         int i = (int) (54 * scale + 0.5f);
-        yCriticalPoint = statusBarHeight + i;
+        int yCriticalPoint = statusBarHeight + i;
         currentFragment = fragments.get(0);
         MainAdapter mainAdapter = new MainAdapter(this, getSupportFragmentManager(), data, fragments, dm.heightPixels - statusBarHeight - i);
         delegateAdapter.addAdapter(mainAdapter);

@@ -1,4 +1,4 @@
-package com.ht.testlist.weight;
+package com.ht.testlist.recyclerview;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

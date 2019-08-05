@@ -5,20 +5,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.ht.testlist.R;
 import com.ht.testlist.adapter.MainAdapter;
-import com.ht.testlist.vp.NestVp;
 
 /**
  * Created by Administrator on 2018/8/29.
  * Description : PageViewHolder
  */
-
 public class PageViewHolder extends RecyclerView.ViewHolder {
 
-//    public NestVp mViewPager;
     public ViewPager mViewPager;
     public LinearLayout rlVpContainer;
     public TabLayout tabLayout;
