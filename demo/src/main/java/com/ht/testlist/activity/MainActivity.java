@@ -34,8 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
         data.add("tab2");
         data.add("tab3");
         data.add("tab4");
-        recyclerView =  findViewById(R.id.rv);
-        RelativeLayout rootView = findViewById(R.id.rl_root);
+        recyclerView =  findViewById(R.id.main_rv);
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(this);
         recyclerView.setLayoutManager(virtualLayoutManager);
