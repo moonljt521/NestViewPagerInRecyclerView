@@ -33,7 +33,7 @@ public class PagerListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         final TextView tv = holder.itemView.findViewById(R.id.tv);
-        tv.setText(position + title);
+        tv.setText(title + "_" + position );
     }
 
     @Override
@@ -73,7 +73,7 @@ public class PagerListAdapter extends RecyclerView.Adapter {
                             double distance = Math.sqrt(Math.abs(x1-x2)*Math.abs(x1-x2)+Math.abs(y1-y2)*Math.abs(y1-y2));//两点之间的距离
                             Log.i("moon",">>>>>>>"+distance +"");
                             if (distance == 0) { // 距离较小，当作click事件来处理
-                                Toast.makeText(view.getContext(),getLayoutPosition() + title , Toast.LENGTH_LONG) .show();
+                                Toast.makeText(view.getContext(),title + "_" + getLayoutPosition()  , Toast.LENGTH_LONG) .show();
                                 return false;
                             } else {
                                 return true ;
