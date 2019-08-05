@@ -48,7 +48,7 @@ public class MainAdapter extends DelegateAdapter.Adapter {
         this.fragments = fragments;
     }
 
-    private int TOP_COUNT = 50;
+    private int TOP_COUNT = 20;
 
     @NonNull
     @Override
