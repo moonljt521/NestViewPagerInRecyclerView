@@ -15,12 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ht.testlist.R;
-import com.ht.testlist.activity.MainActivity;
 import com.ht.testlist.adapter.PagerListAdapter;
 import com.ht.testlist.recyclerview.InnerNestedRecyclerView;
+import com.ht.testlist.utils.Util;
 
 
-public class PagerFragment extends Fragment implements InnerNestedRecyclerView.NeedIntercepectListener {
+public class PagerFragment extends Fragment  {
+//       implements InnerNestedRecyclerView.NeedIntercepectListener {
 
     private InnerNestedRecyclerView mRv;
     private float downX;    //按下时 的X坐标
@@ -62,9 +63,9 @@ public class PagerFragment extends Fragment implements InnerNestedRecyclerView.N
         DisplayMetrics dm = mActivity.getApplicationContext().getResources().getDisplayMetrics();
         final float scale = dm.density;
         int i = (int) (54 * scale + 0.5f);
-        height = statusBarHeight + i;
+        height = statusBarHeight + i + Util.dp2px(100);
         mRv.setMaxY(height);
-        mRv.setNeedIntercepectListener(this);
+//        mRv.setNeedIntercepectListener(this);
 
 //        // TODO: 2019/8/5
 //        mRv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
@@ -111,8 +112,8 @@ public class PagerFragment extends Fragment implements InnerNestedRecyclerView.N
         mRv.setAdapter(adapter);
     }
 
-    @Override
-    public void needIntercepect(boolean needIntercepect) {
-        ((MainActivity) mActivity).adjustIntercept(!needIntercepect);
-    }
+//    @Override
+//    public void needIntercepect(boolean needIntercepect) {
+//        ((MainActivity) mActivity).adjustIntercept(!needIntercepect);
+//    }
 }
