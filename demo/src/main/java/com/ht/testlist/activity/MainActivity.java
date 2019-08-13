@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.RelativeLayout;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                Log.i("moon", "dy = "+ dy);
             }
         });
         adjustIntercept(true);
