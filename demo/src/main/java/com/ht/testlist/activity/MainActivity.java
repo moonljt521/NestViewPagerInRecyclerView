@@ -65,7 +65,9 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Pager
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                Log.i("moon", "dy = "+ dy);
+                if (Math.abs(dy) > 50){
+                    Log.i("moon", "外部 recyclerView dy = "+ dy);
+                }
             }
         });
         adjustIntercept(true);

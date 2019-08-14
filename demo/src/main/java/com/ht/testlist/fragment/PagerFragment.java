@@ -64,6 +64,7 @@ public class PagerFragment extends Fragment  {
         final float scale = dm.density;
         int i = (int) (54 * scale + 0.5f);
         height = statusBarHeight + i + Util.dp2px(100);
+        height = statusBarHeight + i ;
         mRv.setMaxY(height);
 //        mRv.setNeedIntercepectListener(this);
 

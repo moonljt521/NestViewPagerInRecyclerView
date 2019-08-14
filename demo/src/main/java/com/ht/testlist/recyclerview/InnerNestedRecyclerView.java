@@ -37,65 +37,74 @@ public class InnerNestedRecyclerView extends RecyclerView {
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        float x = e.getX();
-        float y = e.getY();
-        switch (e.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                //将按下时的坐标存储
-                downX = x;
-                downY = y;
-                getParent().requestDisallowInterceptTouchEvent(true);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                //获取到距离差
-                float dx = x - downX;
-                float dy = y - downY;
+        try {
+            float x = e.getX();
+            float y = e.getY();
+            switch (e.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    //将按下时的坐标存储
+                    downX = x;
+                    downY = y;
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    //获取到距离差
+                    float dx = x - downX;
+                    float dy = y - downY;
 
-                //通过距离差判断方向
-                int orientation = getOrientation(dx, dy);
-                int[] location = {0, 0};
-                getLocationOnScreen(location);
-                switch (orientation) {
-                    case 'b':
-                        //内层RecyclerView下拉到最顶部时候不再处理事件
-                        if (!canScrollVertically(-1)) {
-                            getParent().requestDisallowInterceptTouchEvent(false);
-                            if (needIntercepectListener != null) {
-                                needIntercepectListener.needIntercepect(false);
+                    //通过距离差判断方向
+                    int orientation = getOrientation(dx, dy);
+                    int[] location = {0, 0};
+                    getLocationOnScreen(location);
+                    switch (orientation) {
+                        case 'b':
+                            //内层RecyclerView下拉到最顶部时候不再处理事件
+                            if (!canScrollVertically(-1)) {
+                                getParent().requestDisallowInterceptTouchEvent(false);
+                                if (needIntercepectListener != null) {
+                                    needIntercepectListener.needIntercepect(false);
+                                }
+                            } else {
+                                getParent().requestDisallowInterceptTouchEvent(true);
+                                if (needIntercepectListener != null) {
+                                    needIntercepectListener.needIntercepect(true);
+                                }
                             }
-                        } else {
-                            getParent().requestDisallowInterceptTouchEvent(true);
-                            if (needIntercepectListener != null) {
-                                needIntercepectListener.needIntercepect(true);
-                            }
-                        }
-                        break;
-                    case 't':
-                        Log.d("maxY", maxY + "");
-                        Log.d("location[1]", location[1] + "");
-                        if (location[1] <= maxY) {
-                            getParent().requestDisallowInterceptTouchEvent(true);
-                            if (needIntercepectListener != null) {
-                                needIntercepectListener.needIntercepect(true);
-                            }
-                        } else {
-                            getParent().requestDisallowInterceptTouchEvent(false);
-                            if (needIntercepectListener != null) {
-                                needIntercepectListener.needIntercepect(false);
+                            break;
+                        case 't':
+                            Log.i("moon", "maxY = "+maxY + "");
+
+                            // 子recyclerView 的 y 轴坐标
+                            Log.i("moon", "location[1] = "+location[1] + "");
+                            if (location[1] <= maxY) {
+                                // true 不想要他的父亲拦截事件
+                                getParent().requestDisallowInterceptTouchEvent(true);
+                                if (needIntercepectListener != null) {
+                                    needIntercepectListener.needIntercepect(true);
+                                }
+                            } else {
+                                getParent().requestDisallowInterceptTouchEvent(false);
                                 return true;
+//                                if (needIntercepectListener != null) {
+//                                    needIntercepectListener.needIntercepect(false);
+//                                    return true;
+//                                }
                             }
-                        }
-                        break;
-                    case 'r':
-                        getParent().requestDisallowInterceptTouchEvent(false);
-                        break;
-                    //左右滑动交给ViewPager处理
-                    case 'l':
-                        getParent().requestDisallowInterceptTouchEvent(false);
-                        break;
-                }
-                break;
+                            break;
+                        case 'r':
+                            getParent().requestDisallowInterceptTouchEvent(false);
+                            break;
+                        //左右滑动交给ViewPager处理
+                        case 'l':
+                            getParent().requestDisallowInterceptTouchEvent(false);
+                            break;
+                    }
+                    break;
+            }
+        }catch (Exception x){
+            x.printStackTrace();
         }
+        
         return super.onTouchEvent(e);
     }
 
