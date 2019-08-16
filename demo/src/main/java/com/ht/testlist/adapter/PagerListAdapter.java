@@ -14,14 +14,25 @@ import android.widget.Toast;
 
 import com.ht.testlist.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class PagerListAdapter extends RecyclerView.Adapter {
+
+    private List<String> list = new ArrayList<>();
+
     private String title;
 
     public PagerListAdapter(String title) {
         this.title = title;
-
     }
+
+    public void addData(List<String> moreList){
+        list.addAll(moreList);
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
@@ -38,7 +49,12 @@ public class PagerListAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 30;
+//        if (title.equals("tab1")) return 4;
+//        if (title.equals("tab2")) return 16;
+//        if (title.equals("tab3")) return 2;
+//        return 19;
+
+        return list.size();
     }
 
     int lastX,lastY;

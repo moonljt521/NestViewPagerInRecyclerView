@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,32 +14,40 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.ht.testlist.R;
-import com.ht.testlist.fragment.PagerFragment;
+import com.ht.testlist.fragment.ItemFragment;
 import com.ht.testlist.holder.PageViewHolder;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainAdapter extends DelegateAdapter.Adapter {
 
     private FragmentManager fragmentManager;
     private Context context;
-    private List<String> titles;
     private int height;
     private PagerAdapter adapter;
     //记录上次展示的tab位置
     private int lastItem;
     private boolean isStick = false;
     private int statusBarHeight;
-    private List<PagerFragment> fragments;
-
+    private List<ItemFragment> fragments = new ArrayList<>();
     private PagerChangeListener pagerChangeListener;
 
-    public MainAdapter(Context context, FragmentManager fragmentManager, List<String> titles, List<PagerFragment> fragments, int height) {
+    private List<String> data = new ArrayList<>();
+
+    public MainAdapter(Context context, FragmentManager fragmentManager, int height) {
         this.height = height;
         this.fragmentManager = fragmentManager;
-        this.titles = titles;
-        this.fragments = fragments;
+
+        data.add("tab1");
+        data.add("tab2");
+        data.add("tab3");
+        data.add("tab4");
+
+        for (int i = 0; i < data.size(); i++) {
+            fragments.add(ItemFragment.newInstance(i,data.get(i)));
+        }
     }
 
     private int TOP_COUNT = 20;
@@ -74,9 +81,10 @@ public class MainAdapter extends DelegateAdapter.Adapter {
             }
 
             if (adapter == null) {
-                adapter = new MainPagerAdapter(fragmentManager, titles, fragments);
+                adapter = new MainPagerAdapter(fragmentManager, data, pageViewHolder.mViewPager ,fragments );
             }
             pageViewHolder.mViewPager.setAdapter(adapter);
+            pageViewHolder.mViewPager.setOffscreenPageLimit(4);
             adapter.notifyDataSetChanged();
             pageViewHolder.tabLayout.setupWithViewPager(pageViewHolder.mViewPager);
             if (lastItem > 0) {

@@ -72,10 +72,10 @@ public class InnerNestedRecyclerView extends RecyclerView {
                             }
                             break;
                         case 't':
-                            Log.i("moon", "maxY = "+maxY + "");
+//                            Log.i("moon", "maxY = "+maxY + "");
 
                             // 子recyclerView 的 y 轴坐标
-                            Log.i("moon", "location[1] = "+location[1] + "");
+//                            Log.i("moon", "location[1] = "+location[1] + "");
                             if (location[1] <= maxY) {
                                 // true 不想要他的父亲拦截事件
                                 getParent().requestDisallowInterceptTouchEvent(true);

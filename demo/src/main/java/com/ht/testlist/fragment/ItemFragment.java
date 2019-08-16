@@ -9,8 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,16 +19,20 @@ import com.ht.testlist.adapter.PagerListAdapter;
 import com.ht.testlist.recyclerview.InnerNestedRecyclerView;
 import com.ht.testlist.utils.Util;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class PagerFragment extends Fragment  {
+
+public class ItemFragment extends Fragment {
 //       implements InnerNestedRecyclerView.NeedIntercepectListener {
 
-    private InnerNestedRecyclerView mRv;
+    private InnerNestedRecyclerView recyclerView;
     private float downX;    //按下时 的X坐标
     private float downY;    //按下时 的Y坐标
     private String title;
     private int height;
     private Activity mActivity;
+
 
     @Override
     public void onAttach(Context context) {
@@ -36,20 +40,23 @@ public class PagerFragment extends Fragment  {
         mActivity = (Activity) context;
     }
 
-    public static PagerFragment newInstance(String title) {
-        PagerFragment pagerFragment = new PagerFragment();
+    public static ItemFragment newInstance(int position, String title) {
+        ItemFragment pagerFragment = new ItemFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
         pagerFragment.setArguments(args);
         return pagerFragment;
     }
 
+    List<String> list = new ArrayList<>();
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = View.inflate(getContext(), R.layout.fragment_pager, null);
-        mRv = (InnerNestedRecyclerView) view.findViewById(R.id.inner_rv);
-        mRv.setNestedScrollingEnabled(true);
+        recyclerView = (InnerNestedRecyclerView) view.findViewById(R.id.inner_rv);
+        recyclerView.setNestedScrollingEnabled(true);
         if (getArguments() != null) {
             title = getArguments().getString("title");
         }
@@ -64,12 +71,46 @@ public class PagerFragment extends Fragment  {
         final float scale = dm.density;
         int i = (int) (54 * scale + 0.5f);
         height = statusBarHeight + i + Util.dp2px(100);
-        height = statusBarHeight + i ;
-        mRv.setMaxY(height);
-//        mRv.setNeedIntercepectListener(this);
+        height = statusBarHeight + i;
+        recyclerView.setMaxY(height);
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        final PagerListAdapter adapter = new PagerListAdapter(title);
+        recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (beginLoadMore) return;
+
+                beginLoadMore = true;
+
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                int lastPos = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+                Log.i("moon", "lastPos = " + lastPos);
+                if (adapter.getItemCount() - 1 == lastPos) {
+                    Log.i("moon", "底部。。。");
+                    adapter.addData(getData());
+
+                }
+                beginLoadMore = false;
+            }
+        });
+
+        adapter.addData(getData());
+
+//        recyclerView.setNeedIntercepectListener(this);
 
 //        // TODO: 2019/8/5
-//        mRv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
 //
 //            float y1,y2,x2,x1;
 //
@@ -103,14 +144,19 @@ public class PagerFragment extends Fragment  {
 //            }
 //        });
 
-        initView();
+
         return view;
     }
 
-    private void initView() {
-        mRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        PagerListAdapter adapter = new PagerListAdapter(title);
-        mRv.setAdapter(adapter);
+    private boolean beginLoadMore = false;
+
+    private List<String> getData() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 16; i++) {
+            String x = " body ";
+            list.add(x);
+        }
+        return list;
     }
 
 //    @Override

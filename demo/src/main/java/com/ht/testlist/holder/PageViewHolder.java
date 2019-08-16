@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import com.ht.testlist.R;
 import com.ht.testlist.adapter.MainAdapter;
+import com.ht.testlist.widget.WrapContentHeightViewPager;
 
 /**
  * Created by Administrator on 2018/8/29.
@@ -15,7 +16,8 @@ import com.ht.testlist.adapter.MainAdapter;
  */
 public class PageViewHolder extends RecyclerView.ViewHolder {
 
-    public ViewPager mViewPager;
+//    public ViewPager mViewPager;
+    public WrapContentHeightViewPager mViewPager;
     public LinearLayout rlVpContainer;
     public TabLayout tabLayout;
 
@@ -39,11 +41,13 @@ public class PageViewHolder extends RecyclerView.ViewHolder {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
+
+                mViewPager.requestLayout();
+
                 if (pagerChangeListener != null) {
                     pagerChangeListener.pagerChange(position);
                 }
