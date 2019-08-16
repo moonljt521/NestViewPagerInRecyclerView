@@ -49,7 +49,7 @@ public class PagerListAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-//        if (title.equals("tab1")) return 4;
+        if (title.equals("tab1")) return 4;
 //        if (title.equals("tab2")) return 16;
 //        if (title.equals("tab3")) return 2;
 //        return 19;

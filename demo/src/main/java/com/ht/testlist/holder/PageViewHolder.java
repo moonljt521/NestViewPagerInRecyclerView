@@ -46,11 +46,13 @@ public class PageViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onPageSelected(int position) {
 
+                mViewPager.setAnimStarted(false);
                 mViewPager.requestLayout();
 
                 if (pagerChangeListener != null) {
                     pagerChangeListener.pagerChange(position);
                 }
+
             }
 
             @Override

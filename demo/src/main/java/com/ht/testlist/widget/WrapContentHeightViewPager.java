@@ -22,6 +22,10 @@ import java.util.LinkedHashMap;
  */
 public class WrapContentHeightViewPager extends ViewPager {
 
+    public void setAnimStarted(Boolean mAnimStarted) {
+        this.mAnimStarted = mAnimStarted;
+    }
+
     private Boolean mAnimStarted = false;
 
     public WrapContentHeightViewPager(Context context) {
